@@ -3,16 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {WeatherServiceService } from './shared/weather-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AppConstants } from './app.constant';
+import { WeatherdetailsComponent } from './details/weatherdetails/weatherdetails.component';
+import { CitylistComponent } from './details/citylist/citylist.component';
+import {SharedService} from './shared/shared-service';
+import { LuxonFormatPipe } from '../app/shared/luxon-format.pipe';
+import { PathLocationStrategy,LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    WeatherdetailsComponent,
+    CitylistComponent,LuxonFormatPipe ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  exports:[LuxonFormatPipe],
+  providers: [WeatherServiceService,AppConstants,{ provide: SharedService, useClass: SharedService },
+  { provide: LocationStrategy, useClass: PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

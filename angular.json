@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CityWeather"
+    }
+  },
+  "defaultProject": "CityWeather",
+  "cli": {
+    "analytics": false
+  }
 }
